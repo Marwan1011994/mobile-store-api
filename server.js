@@ -25,12 +25,22 @@ app.use(morgan("dev"))  // handle operation request on api ==>'console.log()'
 app.use(express.json()) // parsing Data
 app.use("/api",routes)
 
+///////////////////////////////////////////////////////
+// core module for secret key
+// const crypto = require("crypto")
+// function generateAccessToken(){
+//     let secret = crypto.randomBytes(32).toString("hex")
+//     console.log(secret)
+// }
+// generateAccessToken()
+// console.log(new Date(Date.now())) 
+///////////////////////////////////////////////////////
+
 // all routes ==> get , post , patch , delete , ...
 
 app.all("*",(req,res)=>{
     res.status(404).send({message:"invalid route !!!"})
 })
-
 const PORT = process.env.PORT || 5000
 app.listen(PORT,()=>{
     dbconnection()

@@ -1,7 +1,11 @@
 const express = require("express")
 const router = express.Router()
 const authController = require("../controllers/auth.control")
+const {registerationSchema,loginSchema} = require("../validations/auth.validate")
 
-router.post('/register',authController.register)
+const  validate = require("../services/validate.service")
+// const {validate} = require("joi")
+router.post('/register',validate(registerationSchema),authController.register)
+router.post('/login',validate(loginSchema),authController.login)
 
 module.exports = router
